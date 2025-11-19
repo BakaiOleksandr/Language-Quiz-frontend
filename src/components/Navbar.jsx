@@ -3,7 +3,6 @@ import {useContext, useState} from 'react';
 import {AuthContext} from '../context/AuthContext';
 import {LanguageContext} from '../context.languages/LanguageContext';
 import LanguageSelector from '../context.languages/LanguageSelector';
-import SetTranslation from '../pages/SetTranslation';
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -38,11 +37,11 @@ function Navbar() {
           <>
             <LanguageSelector />
             <button onClick={logOutUser}>Logout</button>
-            <Link to="/profile/settranslation">
-              <button>{t.navbar.set_translation}</button>
-            </Link>
             <Link to="/profile">
-              <button>{t.profile.profile}</button>
+              <button onClick={closeSidebar}>{t.profile.profile}</button>
+            </Link>
+            <Link to="/settranslation">
+              <button onClick={closeSidebar}>{t.navbar.set_translation}</button>
             </Link>
             <div
               className="close-sidebar-button"
@@ -53,7 +52,6 @@ function Navbar() {
           </>
         ) : (
           <>
-            {' '}
             <LanguageSelector />
             <Link to="/">
               <button onClick={closeSidebar}>{t.navbar.home}</button>
@@ -63,6 +61,9 @@ function Navbar() {
             </Link>
             <Link to="/login">
               <button onClick={closeSidebar}>{t.login}</button>
+            </Link>
+            <Link to="/settranslation">
+              <button onClick={closeSidebar}>{t.navbar.set_translation}</button>
             </Link>
             <div
               className="close-sidebar-button"

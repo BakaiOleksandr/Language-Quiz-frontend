@@ -8,8 +8,9 @@ export default function HomePage() {
   //...............
   return (
     <>
-      <p style={{padding:'1rem'}}>
-        {t.by_default} {t.navbar.set_translation}, but it is available only for authorised users .
+      <p style={{padding: '1rem'}}>
+        {t.by_default}{' '}
+        <Link to={'/settranslation'}>{t.navbar.set_translation}</Link>
       </p>
       <p></p>
       <Link to={'/trytoplay'}>

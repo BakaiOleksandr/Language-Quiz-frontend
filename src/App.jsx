@@ -60,14 +60,7 @@ function App() {
             </PrivatePages>
           }
         ></Route>
-        <Route
-          path="/profile/settranslation"
-          element={
-            <PrivatePages>
-              <SetTranslation />
-            </PrivatePages>
-          }
-        ></Route>
+        <Route path="/settranslation" element={<SetTranslation />}></Route>
         <Route
           path="/game"
           element={
