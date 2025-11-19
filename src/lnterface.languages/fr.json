@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "set_translation": "Définir la traduction"
+  },
+  "type_the_translation": "Tapez la traduction",
+  "password": "Mot de passe:",
+  "confirm": "Confirmer",
+  "sign_up": "S'inscrire",
+  "login": "Connexion",
+  "name": "Nom:",
+  "play_demo_version": "Jouer la version démo",
+  "full_version_info": "La version complète vous permet de créer votre propre vocabulaire et de suivre les statistiques. Pour déverrouiller la version complète, allez dans le",
+  "already_have_account": "Vous avez déjà un compte?",
+  "dont_have_account": "Vous n'avez pas encore de compte?",
+  "try_to_play": "Essaye de jouer!",
+  "restart_round": "Redémarrer ce tour",
+  "words": "Mots",
+  "wrong_words": "Mots incorrects:",
+  "by_default": "Par défaut, les mots sont traduits de l'anglais vers le néerlandais. Vous pouvez modifier cela dans",
+  "all_answers_correct": "Toutes les réponses sont correctes !",
+  "well_done": "Bien joué!",
+  "back": "Retour",
+  "from": "De",
+  "to": "À",
+  "profile": {
+    "profile": "Profil",
+    "hello": "Bonjour",
+    "back_page": "Retour"
+  }
+}

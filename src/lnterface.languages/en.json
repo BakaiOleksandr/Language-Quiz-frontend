@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "set_translation": "Set Translation"
+  },
+  "type_the_translation": "Type the translation",
+  "password": "Password:",
+  "confirm": "Confirm",
+  "sign_up": "Sign Up",
+  "login": "Login",
+  "name": "Name:",
+  "play_demo_version": "Play demo version",
+  "full_version_info": "Full version allows you to create your own vocabulary and track statistics. To unlock the Full Version - go to the",
+  "already_have_account": "Already have an account?",
+  "dont_have_account": "Don't have an account yet?",
+  "try_to_play": "Try to play!",
+  "restart_round": "Restart this round",
+  "words": "Words",
+  "wrong_words": "Wrong words:",
+  "by_default": "By default, words are translated from English to Dutch. You can adjust this in",
+  "well_done": "Well done!",
+  "all_answers_correct": "All answers are correct!",
+  "back": "Back",
+  "from": "From",
+  "to": "To",
+  "profile": {
+    "profile": "Profile",
+    "hello": "Hello",
+    "back_page": "back"
+  }
+}

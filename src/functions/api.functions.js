@@ -1,0 +1,47 @@
+//GET
+export default async function getData(url, token = null) {
+  try {
+    const res = await fetch(url, {
+      headers: token ? {Authorization: `Bearer ${token}`} : {},
+    });
+    if (!res.ok) {
+      if (res.status === 401) throw new Error('Unauthorized');
+      throw new Error(res.status);
+    }
+
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    throw err;
+  }
+}
+
+//Post
+export async function postData(url, data, authToken = null) {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(authToken && {Authorization: `Bearer ${authToken}`}),
+  };
+
+  let res, result;
+
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(data),
+    });
+
+    // Пытаемся распарсить JSON
+    result = await res.json();
+  } catch (err) {
+    console.error('Network or JSON error:', err);
+    throw new Error('Network or JSON error');
+  }
+
+  if (!res.ok) {
+    throw new Error(result?.message || result?.error || `HTTP ${res.status}`);
+  }
+
+  return result;
+}

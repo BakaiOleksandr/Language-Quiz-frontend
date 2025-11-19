@@ -1,0 +1,246 @@
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgb(61, 61, 61);
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  /* display: flex;
+  place-items: center; */
+  min-width: 320px;
+  min-height: 100vh;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+h2 {
+  padding: 0.8rem;
+  font-size: 2rem;
+  margin: 1rem;
+}
+h3 {
+  padding: 0.8rem;
+}
+input {
+  background-color: rgb(231, 231, 231);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+}
+label {
+  margin: 0.5rem 0 0 0;
+}
+form {
+  margin: 0 1rem 0 1rem;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  margin: 0.5rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ededed;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.change-language-btn {
+  display: inline-block;
+  position: relative;
+  padding: 0.6em 1.2em;
+  margin: 0.5rem;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  width: 3rem;
+  background-color: #ffffff;
+  white-space: nowrap;
+}
+.change-language-btn:hover {
+  border-color: #646cff;
+}
+.dropdown-menu {
+  position: absolute;
+  background-color: #ededed;
+  width: 3rem;
+  padding: 0.6em 1.2em;
+  left: 0;
+  top: 2.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+.dropdown-menu div {
+  margin: 1rem;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.sign-up-page {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.sign-up-page form {
+  display: flex;
+  flex-direction: column;
+}
+.sign-up-page button {
+  margin-top: 1rem;
+}
+.login-page {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.login-page form {
+  display: flex;
+  flex-direction: column;
+}
+.login-page button {
+  margin: 2rem 0.2rem;
+}
+.set-translation-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.set-translation-form select {
+  font-size: 1.5rem;
+}
+/*SIDEBAR*/
+.close-sidebar-button {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
+.menu-sidebar {
+  position: fixed;
+  top: 0;
+  left: -20rem;
+  width: 18rem;
+  height: 100%;
+  background-color: rgba(159, 157, 157, 0.87);
+  transition: left 0.3s ease;
+  margin-top: 3.25rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-sidebar button {
+  background-color: #f2f3f6;
+  margin: 2rem 0;
+}
+.menu-sidebar.open {
+  left: 0;
+}
+.menu-sidebar.open button {
+  background-color: #f2f3f6;
+  margin: 2rem 0;
+}
+.menu-sidebar.open .change-language-btn {
+  margin: 2rem 0;
+}
+.menu-sidebar .change-language-btn {
+  margin: 2rem 0;
+}
+.sidebar button {
+  display: block;
+  margin: 1rem 0;
+  width: 100%;
+  background: none;
+  color: rgb(255, 255, 255);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.change-language-btn .btn-container {
+  display: flex;
+}
+.change-language-btn p {
+  margin: 0;
+}
+/*NAVBAR*/
+.navbar-header {
+  background-color: #a5bffd;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.header-text {
+  color: #535bf2;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  padding: 0.5rem;
+  margin: 0;
+}
+.navbar-btn {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+  
+} */
