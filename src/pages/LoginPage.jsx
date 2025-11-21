@@ -27,6 +27,7 @@ export default function LoginPage() {
       await postData(`${VITE_API_URL}/auth/login`, reqBody).then((res) => {
         storeToken(res.authToken);
         authenticateUser();
+        console.log(res);
         navigate('/profile');
       });
     } catch (err) {

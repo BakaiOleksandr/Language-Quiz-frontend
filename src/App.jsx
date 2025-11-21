@@ -10,6 +10,8 @@ import PrivatePages from './components/PrivatePages';
 import TryToPlay from './pages/TryToPlay';
 import SetTranslation from './pages/SetTranslation';
 import GamePrivate from './pages/GamePrivate';
+import Level_1 from './pages/Level_1';
+Level_1;
 function App() {
   return (
     <>
@@ -52,6 +54,7 @@ function App() {
           }
         ></Route>
         {/* {PrivatePages} */}
+        <Route path="/level1" element={<Level_1 />}></Route>
         <Route
           path="/profile"
           element={

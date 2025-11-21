@@ -1,40 +1,27 @@
-import {useContext, useEffect, useState} from 'react';
-import {AuthContext} from '../context/AuthContext';
-import {LanguageContext} from '../context.languages/LanguageContext';
 import {Link} from 'react-router-dom';
+import {AuthContext} from '../context/AuthContext';
+import {useContext, useEffect, useState} from 'react';
 import getData from '../functions/api.functions';
-
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
-export default function Profile() {
+export default function Level_1() {
   const {user, isLoading, isLoggedIn} = useContext(AuthContext);
-  const {t} = useContext(LanguageContext);
-
   const [level, setLevel] = useState(null);
+
   //get info about LEVEL 1
   useEffect(() => {
     if (!isLoggedIn) return;
-
+    if (isLoading) return <div>Loading...</div>;
     const token = localStorage.getItem('authToken');
 
     getData(`${VITE_API_URL}/game/level1`, token)
       .then((data) => setLevel(data))
       .catch((err) => console.error(err));
-  }, [isLoggedIn]);
+  }, [user]);
   //...................
-
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <>
-      <div style={{margin: '1rem'}}>
-        <div>
-          {t.profile.hello}, {user.name}!
-        </div>
-      </div>
-      <Link to="/level1">
-        <button>Level 1</button>
-      </Link>
+      <h1>Level 1</h1>
       <div>Your statistic</div>
 
       {level ? (
@@ -49,7 +36,9 @@ export default function Profile() {
         <p>Loading level...</p>
       )}
 
-      <div>Let's Play! Choose the level.</div>
+      <Link to={'/game'}>
+        <button>Start Level 1</button>
+      </Link>
     </>
   );
 }
