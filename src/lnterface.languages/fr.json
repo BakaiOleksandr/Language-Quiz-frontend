@@ -28,6 +28,7 @@
   "profile": {
     "profile": "Profil",
     "hello": "Bonjour",
-    "back_page": "Retour"
+    "back_page": "Retour",
+    "level_1": "Niveau 1"
   }
 }

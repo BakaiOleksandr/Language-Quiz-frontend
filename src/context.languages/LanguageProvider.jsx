@@ -11,7 +11,7 @@ export default function LanguageProvider({children}) {
   const [language, setLanguage] = useState(
     localStorage.getItem('lang') || 'en'
   );
-  const t = translations[language];
+  const t = translations[language] || translations['en'];
   //................
   const changeLanguage = (lang) => {
     setLanguage(lang);

@@ -24,10 +24,11 @@
   "well_done": "¡Bien hecho!",
   "back": "Atrás",
   "from": "De",
-"to": "A",
+  "to": "A",
   "profile": {
     "profile": "Perfil",
     "hello": "Hola",
-    "back_page": "Atrás"
+    "back_page": "Atrás",
+    "level_1": "Nivel 1"
   }
 }

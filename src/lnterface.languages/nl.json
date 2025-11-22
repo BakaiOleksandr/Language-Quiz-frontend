@@ -28,6 +28,7 @@
   "profile": {
     "profile": "Profiel",
     "hello": "Hallo",
-    "back_page": "Terug"
+    "back_page": "Terug",
+    "level_1":"Niveau 1"
   }
 }

@@ -3,10 +3,14 @@ import getData from '../functions/api.functions';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 import {LanguageContext} from '../context.languages/LanguageContext';
 import {TranslationContext} from '../context.languages/TranslationContext';
-
 import {useNavigate} from 'react-router-dom';
+import Spinner from '../components/Spinner';
+import {AuthContext} from '../context/AuthContext';
 
 export default function Game() {
+  //AUTHCONTEXT
+  const {isLoading} = useContext(AuthContext);
+
   //useNavigate
   const navigate = useNavigate();
 
@@ -87,6 +91,8 @@ export default function Game() {
       setUserInput('');
     }
   };
+  //SPINNER
+    if (isLoading||!wordsData) return <Spinner />;
   return (
     <>
       {!show && (

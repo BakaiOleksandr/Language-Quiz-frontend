@@ -6,6 +6,8 @@ import getData from '../functions/api.functions';
 import {useNavigate} from 'react-router-dom';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 import {Navigate} from 'react-router-dom';
+import Spinner from '../components/Spinner';
+
 /////////////////////////////////////////////
 export default function Profile() {
   const {user, isLoading, isLoggedIn, handleUnauthorized} =
@@ -13,6 +15,8 @@ export default function Profile() {
   const {t} = useContext(LanguageContext);
   const navigate = useNavigate();
   const [level, setLevel] = useState(null);
+  //LOADING STATE
+  const [loading, setLoading] = useState(true);
   //get info about LEVEL 1
   useEffect(() => {
     if (!isLoggedIn) {
@@ -25,7 +29,8 @@ export default function Profile() {
       .then((data) => setLevel(data))
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setTimeout(() => setLoading(false), 1000));
     if (!token) {
       handleUnauthorized();
       return;
@@ -38,7 +43,7 @@ export default function Profile() {
 
   //........
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading || loading) return <Spinner />;
 
   if (!isLoggedIn || !user) {
     return <Navigate to="/login" replace />;
@@ -49,16 +54,16 @@ export default function Profile() {
   return (
     <>
       <div style={{margin: '1rem'}}>
-        <div>
+        <h1>
           {t.profile.hello}, {user.name}!
-        </div>
+        </h1>
       </div>
       <Link to="/level1">
         <button>Level 1</button>
       </Link>
       <div>Your statistic</div>
 
-      {level ? (
+      {level && (
         <>
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
@@ -66,8 +71,6 @@ export default function Profile() {
           <div>Mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
         </>
-      ) : (
-        <p>Loading level...</p>
       )}
 
       <div>Let's Play! Choose the level.</div>

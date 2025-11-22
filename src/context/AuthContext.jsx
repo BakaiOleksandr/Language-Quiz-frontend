@@ -3,6 +3,7 @@ const VITE_API_URL = import.meta.env.VITE_API_URL;
 const AuthContext = React.createContext();
 import getData from '../functions/api.functions';
 import {useNavigate} from 'react-router-dom';
+import Spinner from '../components/Spinner';
 //Auth Provider Wrapper
 
 function AuthProviderWrapper({children}) {
@@ -29,7 +30,7 @@ function AuthProviderWrapper({children}) {
       setIsLoggedIn(false);
       setUser(null);
       setIsLoading(false);
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -54,13 +55,17 @@ function AuthProviderWrapper({children}) {
     setIsLoggedIn(false);
     setUser(null);
     setIsLoading(false);
-    navigate('/login', {replace: true});
+    navigate('/home', {replace: true});
   };
   const handleUnauthorized = () => logOutUser();
 
   useEffect(() => {
     authenticateUser();
   }, []);
+  //SPINNER
+  {
+    isLoading ? <Spinner /> : children;
+  }
   return (
     <AuthContext.Provider
       value={{

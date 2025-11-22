@@ -214,7 +214,7 @@ button:focus-visible {
 .navbar-header {
   background-color: #a5bffd;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 .header-text {
@@ -222,13 +222,34 @@ button:focus-visible {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: left;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   margin: 0;
 }
 .navbar-btn {
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+/* SPINNER */
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  margin: 100px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* @media (prefers-color-scheme: light) {

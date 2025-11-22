@@ -28,6 +28,7 @@
   "profile": {
     "profile": "Профиль",
     "hello": "Привет",
-    "back_page": "Назад"
+    "back_page": "Назад",
+    "level_1": "Уровень 1"
   }
 }

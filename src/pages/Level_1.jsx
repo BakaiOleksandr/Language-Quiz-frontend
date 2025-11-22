@@ -3,15 +3,24 @@ import {AuthContext} from '../context/AuthContext';
 import {useContext, useEffect, useState} from 'react';
 import getData from '../functions/api.functions';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
+import {LanguageContext} from '../context.languages/LanguageContext';
+import Spinner from '../components/Spinner';
+
 ///////////////////////////////
 export default function Level_1() {
+  //AUTHCONTEXT
   const {user, isLoading, isLoggedIn, handleUnauthorized} =
     useContext(AuthContext);
+  //LANGUAGECONTEXT
+  const {t} = useContext(LanguageContext);
+  //LEVEL STATE
   const [level, setLevel] = useState(null);
+  //LOADING STATE
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  //USE EFFECT
   //get info about LEVEL 1
   useEffect(() => {
-    if (isLoading) return; // ждем завершения проверки токена
     if (!isLoggedIn) {
       navigate('/login', {replace: true});
       return;
@@ -22,18 +31,19 @@ export default function Level_1() {
       handleUnauthorized();
       return;
     }
-
     getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
       .then((data) => setLevel(data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setTimeout(() => setLoading(false), 1000));
   }, [isLoggedIn, isLoading, user, navigate, handleUnauthorized]);
   //...................
+  if (isLoading || loading) return <Spinner />;
   return (
     <>
-      <h1>Level 1</h1>
+      <h1>{t.profile.level_1}</h1>
       <div>Your statistic</div>
 
-      {level ? (
+      {level && (
         <>
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
@@ -41,13 +51,17 @@ export default function Level_1() {
           <div>Mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
         </>
-      ) : (
-        <p>Loading level...</p>
       )}
-
-      <Link to={'/game'}>
-        <button>Start Level 1</button>
-      </Link>
+      <div
+        style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+      >
+        <Link to={'/game'}>
+          <button>Start Level 1</button>
+        </Link>
+        <button style={{width: 'fit-content'}} onClick={() => navigate(-1)}>
+          {t.back}
+        </button>
+      </div>
     </>
   );
 }

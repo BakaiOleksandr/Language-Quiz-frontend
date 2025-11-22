@@ -6,17 +6,20 @@ import {BrowserRouter} from 'react-router-dom';
 import {AuthProviderWrapper} from './context/AuthContext.jsx';
 import LanguageProvider from './context.languages/LanguageProvider.jsx';
 import TranslationProvider from './context.languages/TranslationContext.jsx';
+import {ErrorConnectionProvider} from './context/ErrorConnectionProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <LanguageProvider>
-        <TranslationProvider>
-          <AuthProviderWrapper>
-            <App />
-          </AuthProviderWrapper>
-        </TranslationProvider>
-      </LanguageProvider>
+      <ErrorConnectionProvider>
+        <LanguageProvider>
+          <TranslationProvider>
+            <AuthProviderWrapper>
+              <App />
+            </AuthProviderWrapper>
+          </TranslationProvider>
+        </LanguageProvider>
+      </ErrorConnectionProvider>
     </BrowserRouter>
   </StrictMode>
 );

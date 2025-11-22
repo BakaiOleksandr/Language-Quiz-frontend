@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, NavLink, useLocation} from 'react-router-dom';
 import {useContext, useState} from 'react';
 import {AuthContext} from '../context/AuthContext';
 import {LanguageContext} from '../context.languages/LanguageContext';
@@ -13,13 +13,24 @@ function Navbar() {
   //...............
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const closeSidebar = () => setSidebarOpen(false);
+  //................USE LOCATION
+  const location = useLocation();
+  const pageTitles = t && {
+    '/': isLoggedIn ? `${t.navbar.home}` : 'Language Quiz Game',
+    '/signup': `${t.sign_up}`,
+    '/login': `${t.login}`,
+    '/profile': `${t.profile.profile}`,
+    '/settranslation': `${t.navbar.set_translation}`,
+    '/level1':`${t.profile.level_1}`
+  };
+  const currentPage = pageTitles[location.pathname] || 'Language Quiz Game';
+  //..............................
 
   return (
     <>
       <div className="navbar-header">
-        <Link to="/">
-          <p className="header-text">Language Quiz Game</p>
-        </Link>
+        <p className="header-text">{currentPage}</p>
+
         {/*PRIVATE*/}
         {/* NAVBAR-BTN */}
         <nav className="navbar-btn">
@@ -33,19 +44,27 @@ function Navbar() {
       ></div>
       {/* MENU-SIDEBAR */}
       <div className={`menu-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        {/* ........................................................... */}
         {isLoggedIn ? (
           <>
-            <Link to="/">
+            {/* HOME */}
+            <NavLink to="/">
               <button onClick={closeSidebar}>{t.navbar.home}</button>
-            </Link>
+            </NavLink>
+            {/* LANGUAGE SELECTOR */}
             <LanguageSelector />
-            <button onClick={logOutUser}>Logout</button>
-            <Link to="/profile">
+
+            {/* PROFILE */}
+            <NavLink to="/profile">
               <button onClick={closeSidebar}>{t.profile.profile}</button>
-            </Link>
+            </NavLink>
+            {/* SET TRANSLATION */}
             <Link to="/settranslation">
               <button onClick={closeSidebar}>{t.navbar.set_translation}</button>
             </Link>
+            {/* LOG OUT */}
+            <button onClick={logOutUser}>Logout</button>
+            {/* SIDEBAR CLOSE BTN */}
             <div
               className="close-sidebar-button"
               onClick={() => setSidebarOpen(false)}
@@ -54,6 +73,7 @@ function Navbar() {
             </div>
           </>
         ) : (
+          // .................................................
           <>
             <LanguageSelector />
             <Link to="/">
