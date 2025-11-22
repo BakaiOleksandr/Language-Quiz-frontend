@@ -1,11 +1,14 @@
 //GET
-export default async function getData(url, token = null) {
+export default async function getData(url, token = null, onUnauthorized) {
   try {
     const res = await fetch(url, {
       headers: token ? {Authorization: `Bearer ${token}`} : {},
     });
     if (!res.ok) {
-      if (res.status === 401) throw new Error('Unauthorized');
+      if (res.status === 401) {
+        onUnauthorized();
+        throw new Error('Unauthorized');
+      }
       throw new Error(res.status);
     }
 
@@ -32,7 +35,6 @@ export async function postData(url, data, authToken = null) {
       body: JSON.stringify(data),
     });
 
-    // Пытаемся распарсить JSON
     result = await res.json();
   } catch (err) {
     console.error('Network or JSON error:', err);

@@ -3,27 +3,48 @@ import {AuthContext} from '../context/AuthContext';
 import {LanguageContext} from '../context.languages/LanguageContext';
 import {Link} from 'react-router-dom';
 import getData from '../functions/api.functions';
-
+import {useNavigate} from 'react-router-dom';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
-
+import {Navigate} from 'react-router-dom';
+/////////////////////////////////////////////
 export default function Profile() {
-  const {user, isLoading, isLoggedIn} = useContext(AuthContext);
+  const {user, isLoading, isLoggedIn, handleUnauthorized} =
+    useContext(AuthContext);
   const {t} = useContext(LanguageContext);
-
+  const navigate = useNavigate();
   const [level, setLevel] = useState(null);
   //get info about LEVEL 1
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (!isLoggedIn) {
+      return;
+    }
 
     const token = localStorage.getItem('authToken');
 
-    getData(`${VITE_API_URL}/game/level1`, token)
+    getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
       .then((data) => setLevel(data))
-      .catch((err) => console.error(err));
-  }, [isLoggedIn]);
-  //...................
+      .catch((err) => {
+        console.log(err);
+      });
+    if (!token) {
+      handleUnauthorized();
+      return;
+    }
+    if (!isLoggedIn) {
+      navigate('/login', {replace: true});
+      return;
+    }
+  }, [isLoggedIn, isLoading, navigate, handleUnauthorized]);
+
+  //........
 
   if (isLoading) return <p>Loading...</p>;
+
+  if (!isLoggedIn || !user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  //...................
 
   return (
     <>

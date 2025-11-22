@@ -35,6 +35,9 @@ function Navbar() {
       <div className={`menu-sidebar ${sidebarOpen ? 'open' : ''}`}>
         {isLoggedIn ? (
           <>
+            <Link to="/">
+              <button onClick={closeSidebar}>{t.navbar.home}</button>
+            </Link>
             <LanguageSelector />
             <button onClick={logOutUser}>Logout</button>
             <Link to="/profile">

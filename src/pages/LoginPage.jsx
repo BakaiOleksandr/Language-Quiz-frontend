@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 import {postData} from '../functions/api.functions';
-import { LanguageContext } from '../context.languages/LanguageContext';
+import {LanguageContext} from '../context.languages/LanguageContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -27,7 +27,6 @@ export default function LoginPage() {
       await postData(`${VITE_API_URL}/auth/login`, reqBody).then((res) => {
         storeToken(res.authToken);
         authenticateUser();
-        console.log(res);
         navigate('/profile');
       });
     } catch (err) {

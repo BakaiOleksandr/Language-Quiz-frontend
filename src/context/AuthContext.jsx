@@ -21,29 +21,31 @@ function AuthProviderWrapper({children}) {
   //.........................
   //AuthUser
   const authenticateUser = async () => {
+    setIsLoading(true);
     const storedToken = localStorage.getItem('authToken');
     // If the token exists in the localStorage
-    if (storedToken) {
-      // We must send the JWT token in the request's "Authorization" Headers
-      try {
-        await getData(`${VITE_API_URL}/auth/verify`, storedToken,true).then(
-          (res) => {
-            const userData = res.user || res;
-            setIsLoggedIn(true);
-            setIsLoading(false);
-            setUser(userData);
-          }
-        );
-      } catch (error) {
-        setIsLoggedIn(false);
-        setIsLoading(false);
-        setUser(null);
-      }
-    } else {
-      // If the token is not available (or is removed)
+
+    if (!storedToken) {
       setIsLoggedIn(false);
-      setIsLoading(false);
       setUser(null);
+      setIsLoading(false);
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const res = await getData(
+        `${VITE_API_URL}/auth/verify`,
+        storedToken,
+        true
+      );
+      const userData = res.user || res;
+
+      setIsLoggedIn(true);
+      setUser(userData);
+      setIsLoading(false);
+    } catch (err) {
+      logOutUser();
     }
   };
 
@@ -52,7 +54,10 @@ function AuthProviderWrapper({children}) {
     setIsLoggedIn(false);
     setUser(null);
     setIsLoading(false);
+    navigate('/login', {replace: true});
   };
+  const handleUnauthorized = () => logOutUser();
+
   useEffect(() => {
     authenticateUser();
   }, []);
@@ -65,6 +70,7 @@ function AuthProviderWrapper({children}) {
         storeToken,
         authenticateUser,
         logOutUser,
+        handleUnauthorized,
       }}
     >
       {children}

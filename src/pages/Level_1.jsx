@@ -1,23 +1,32 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import {useContext, useEffect, useState} from 'react';
 import getData from '../functions/api.functions';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
-
+///////////////////////////////
 export default function Level_1() {
-  const {user, isLoading, isLoggedIn} = useContext(AuthContext);
+  const {user, isLoading, isLoggedIn, handleUnauthorized} =
+    useContext(AuthContext);
   const [level, setLevel] = useState(null);
-
+  const navigate = useNavigate();
   //get info about LEVEL 1
   useEffect(() => {
-    if (!isLoggedIn) return;
-    if (isLoading) return <div>Loading...</div>;
-    const token = localStorage.getItem('authToken');
+    if (isLoading) return; // ждем завершения проверки токена
+    if (!isLoggedIn) {
+      navigate('/login', {replace: true});
+      return;
+    }
 
-    getData(`${VITE_API_URL}/game/level1`, token)
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      handleUnauthorized();
+      return;
+    }
+
+    getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
       .then((data) => setLevel(data))
       .catch((err) => console.error(err));
-  }, [user]);
+  }, [isLoggedIn, isLoading, user, navigate, handleUnauthorized]);
   //...................
   return (
     <>

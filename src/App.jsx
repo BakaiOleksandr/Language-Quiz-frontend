@@ -19,23 +19,9 @@ function App() {
       {/*Routes*/}
       <Routes>
         {/* {HomePage} */}
-        <Route
-          path="/"
-          element={
-            <PublicPages>
-              <HomePage />
-            </PublicPages>
-          }
-        ></Route>
+        <Route path="/" element={<HomePage />}></Route>
         {/* {TryToPlay} */}
-        <Route
-          path="/trytoplay"
-          element={
-            <PublicPages>
-              <TryToPlay />
-            </PublicPages>
-          }
-        ></Route>
+        <Route path="/trytoplay" element={<TryToPlay />}></Route>
         {/* {AuthPages} */}
         <Route
           path="/signup"
@@ -54,7 +40,14 @@ function App() {
           }
         ></Route>
         {/* {PrivatePages} */}
-        <Route path="/level1" element={<Level_1 />}></Route>
+        <Route
+          path="/level1"
+          element={
+            <PrivatePages>
+              <Level_1 />
+            </PrivatePages>
+          }
+        ></Route>
         <Route
           path="/profile"
           element={
