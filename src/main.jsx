@@ -7,7 +7,7 @@ import {AuthProviderWrapper} from './context/AuthContext.jsx';
 import LanguageProvider from './context.languages/LanguageProvider.jsx';
 import TranslationProvider from './context.languages/TranslationContext.jsx';
 import {ErrorConnectionProvider} from './context/ErrorConnectionProvider.jsx';
-
+import GameProvider from './context.game/GameContext.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -15,7 +15,9 @@ createRoot(document.getElementById('root')).render(
         <LanguageProvider>
           <TranslationProvider>
             <AuthProviderWrapper>
-              <App />
+              <GameProvider>
+                <App />
+              </GameProvider>
             </AuthProviderWrapper>
           </TranslationProvider>
         </LanguageProvider>

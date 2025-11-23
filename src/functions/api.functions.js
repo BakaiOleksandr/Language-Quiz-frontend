@@ -34,16 +34,13 @@ export async function postData(url, data, authToken = null) {
       headers,
       body: JSON.stringify(data),
     });
-
     result = await res.json();
+    if (!res.ok) {
+      throw new Error(result?.message || 'Server Error');
+    }
+    return result;
   } catch (err) {
     console.error('Network or JSON error:', err);
     throw new Error('Network or JSON error');
   }
-
-  if (!res.ok) {
-    throw new Error(result?.message || result?.error || `HTTP ${res.status}`);
-  }
-
-  return result;
 }

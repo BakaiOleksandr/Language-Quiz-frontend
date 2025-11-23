@@ -18,6 +18,7 @@
   "try_to_play": "Essaye de jouer!",
   "restart_round": "Redémarrer ce tour",
   "words": "Mots",
+  "words_to_memo":"Mots à mémoriser:",
   "wrong_words": "Mots incorrects:",
   "by_default": "Par défaut, les mots sont traduits de l'anglais vers le néerlandais. Vous pouvez modifier cela dans",
   "all_answers_correct": "Toutes les réponses sont correctes !",

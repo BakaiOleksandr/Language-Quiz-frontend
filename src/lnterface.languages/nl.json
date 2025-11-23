@@ -18,6 +18,7 @@
   "try_to_play": "Probeer te spelen!",
   "restart_round": "Herstart deze ronde",
   "words": "Woorden",
+  "words_to_memo": "Woorden om te onthouden:",
   "wrong_words": "Foute woorden:",
   "by_default": "Standaard worden woorden vertaald van Engels naar Nederlands. U kunt dit aanpassen in",
   "all_answers_correct": "Alle antwoorden zijn correct!",
@@ -29,6 +30,6 @@
     "profile": "Profiel",
     "hello": "Hallo",
     "back_page": "Terug",
-    "level_1":"Niveau 1"
+    "level_1": "Niveau 1"
   }
 }

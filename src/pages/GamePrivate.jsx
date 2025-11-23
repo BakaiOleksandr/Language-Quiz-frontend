@@ -6,10 +6,13 @@ import {TranslationContext} from '../context.languages/TranslationContext';
 import {useNavigate} from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import {AuthContext} from '../context/AuthContext';
-
+import {GameContext} from '../context.game/GameContext';
+//MAIN FUNCTION
 export default function Game() {
   //AUTHCONTEXT
   const {isLoading} = useContext(AuthContext);
+  //GAME PROVIDER
+  const {setTotalGamePlays} = useContext(GameContext);
 
   //useNavigate
   const navigate = useNavigate();
@@ -22,7 +25,6 @@ export default function Game() {
   const [wordsData, setWordsData] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userInput, setUserInput] = useState('');
-  const [wrongWordSum, setWrongWordSum] = useState(0);
   const [wrongWord, setWrongWord] = useState(false);
   const [wordsToMemorise, setwordsToMemorise] = useState([]);
   const [show, setShow] = useState(false);
@@ -47,7 +49,6 @@ export default function Game() {
     };
     startGame(); //call function START GAME Immidiately
     setwordsToMemorise([]);
-    setWrongWordSum(0);
     setShow(false);
   }, [restart]);
 
@@ -74,29 +75,34 @@ export default function Game() {
         setUserInput(''); //clear input
         setWrongWord(false); //set false for next 'wrong' word
       } else {
-        alert('Game Over!');
-
-        setShow(true);
         //game over
+        setShow(true);
+        setTotalGamePlays((previos) => previos + 1);
+        // setMistakes();
+        alert('Game Over!');
       }
     } else {
       //wrong word
       if (!wrongWord) {
         setWrongWord(true);
-        setwordsToMemorise((prev) => [...prev, correctAnswer]);
+        setwordsToMemorise((prev) => [
+          ...prev,
+          {from: currentWord[fromLang], to: correctAnswer},
+        ]);
         console.log(correctAnswer);
-
-        setWrongWordSum((prev) => prev + 1);
       }
       alert('Wrong word');
       setUserInput('');
     }
   };
-
+  // const setMistakes = () => {
+  //   setTotalGameMistakes(wordsToMemorise.length);
+  //   console.log(wordsToMemorise.length);
+  // };
   //SPINNER
   if (isLoading || !wordsData) return <Spinner />;
   // console.log(wordsData&&wordsData[currentIndex][fromLang]);
-  
+
   return (
     <>
       {!show && (
@@ -138,7 +144,7 @@ export default function Game() {
           </p>
           <p>
             {t.wrong_words}
-            {wrongWordSum}
+            {/* {wrongWordSum} */}
           </p>
 
           <div
@@ -157,7 +163,8 @@ export default function Game() {
             {/* {BACK_BUTTON} */}
             <button
               onClick={() => navigate(-1)}
-              style={{width: 'fit-content', marginTop: '2rem'}}
+              className="back-btn"
+              style={{marginTop: '15%'}}
             >
               {t.back}
             </button>
@@ -168,7 +175,7 @@ export default function Game() {
       {/*Show Words to memorise in THE END OF GAME */}
       {show && (
         <>
-          <h2>
+          <div>
             {wordsToMemorise.length === 0 ? (
               <>
                 {t.well_done}
@@ -176,19 +183,18 @@ export default function Game() {
                 {t.all_answers_correct}
               </>
             ) : (
-              'Words to memorise:'
+              <h3>{t.words_to_memo}</h3>
             )}
-          </h2>
+          </div>
           <div style={{fontSize: '2rem'}}>
             {wordsToMemorise.map((el, index) => (
-              <p key={index}>{el}</p>
+              <p key={index}>
+                {el.from} - {el.to}
+              </p>
             ))}
           </div>
 
-          <button
-            style={{backgroundColor: 'lightskyblue'}}
-            onClick={() => navigate(-1)}
-          >
+          <button className="back-btn" onClick={() => navigate(-1)}>
             {t.back}
           </button>
         </>

@@ -48,7 +48,7 @@ export default function HomePage() {
           <>
             <h2>Welcome {user.name}!</h2>
             <p>
-              You are logged in! Go to <Link to="/profile">Profile</Link>
+              You are logged in!<br></br><Link to="/profile"><button>{t.profile.profile}</button></Link>
             </p>
           </>
         ) : (

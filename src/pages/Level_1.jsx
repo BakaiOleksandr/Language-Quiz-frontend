@@ -40,7 +40,7 @@ export default function Level_1() {
   if (isLoading || loading) return <Spinner />;
   return (
     <>
-      <h1>{t.profile.level_1}</h1>
+      <h2>{t.profile.level_1}</h2>
       <div>Your statistic</div>
 
       {level && (
@@ -48,7 +48,7 @@ export default function Level_1() {
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
           <div>Total score: {level.total_score}</div>
-          <div>Mistakes: {level.total_mistakes}</div>
+          <div>Previous Mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
         </>
       )}
@@ -58,7 +58,7 @@ export default function Level_1() {
         <Link to={'/game'}>
           <button>Start Level 1</button>
         </Link>
-        <button style={{width: 'fit-content'}} onClick={() => navigate(-1)}>
+        <button className="back-btn" style={{marginTop:"60%"}} onClick={() => navigate(-1)}>
           {t.back}
         </button>
       </div>

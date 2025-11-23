@@ -19,6 +19,7 @@
   "restart_round": "Restart this round",
   "words": "Words",
   "wrong_words": "Wrong words:",
+  "words_to_memo":"Words to memorise:",
   "by_default": "By default, words are translated from English to Dutch. You can adjust this in",
   "well_done": "Well done!",
   "all_answers_correct": "All answers are correct!",

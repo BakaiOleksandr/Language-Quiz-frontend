@@ -153,7 +153,8 @@ export default function Game() {
             {/* {BACK_BUTTON} */}
             <button
               onClick={() => navigate(-1)}
-              style={{width: 'fit-content', marginTop: '2rem'}}
+              className='back-btn'
+             
             >
               {t.back}
             </button>

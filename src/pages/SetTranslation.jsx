@@ -43,7 +43,7 @@ export default function SetTranslation() {
     >
       <h2>{t.navbar.set_translation}</h2>
       <form className="set-translation-form">
-        <label>
+        <label style={{marginTop:"3rem"}}>
           {t.from}:{' '}
           <select
             value={fromLang}
@@ -58,7 +58,7 @@ export default function SetTranslation() {
           </select>
         </label>
 
-        <label>
+        <label style={{marginTop:"3rem"}}>
           {t.to}:{' '}
           <select
             value={toLang}
@@ -73,10 +73,7 @@ export default function SetTranslation() {
           </select>
         </label>
       </form>
-      <button
-        style={{width: 'fit-content', marginTop: '2rem'}}
-        onClick={() => navigate(-1)}
-      >
+      <button className="back-btn" style={{marginTop:"60%"}} onClick={() => navigate(-1)}>
         {t.back}
       </button>
     </div>

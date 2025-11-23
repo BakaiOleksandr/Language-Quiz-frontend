@@ -27,6 +27,7 @@ export default function Profile() {
 
     getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
       .then((data) => setLevel(data))
+
       .catch((err) => {
         console.log(err);
       })
@@ -48,20 +49,18 @@ export default function Profile() {
   if (!isLoggedIn || !user) {
     return <Navigate to="/login" replace />;
   }
-
   //...................
 
   return (
     <>
-      <div style={{margin: '1rem'}}>
-        <h1>
+      <div style={{margin: '0.5rem'}}>
+        <h2>
           {t.profile.hello}, {user.name}!
-        </h1>
+        </h2>
       </div>
       <Link to="/level1">
-        <button>Level 1</button>
+        <button>Play</button>
       </Link>
-      <div>Your statistic</div>
 
       {level && (
         <>
@@ -70,6 +69,7 @@ export default function Profile() {
           <div>Total score: {level.total_score}</div>
           <div>Mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
+          <div>Average score: {level.average_score}</div>
         </>
       )}
 
