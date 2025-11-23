@@ -55,6 +55,7 @@ export default function Game() {
   const submitWord = (e) => {
     e.preventDefault();
     const currentWord = wordsData[currentIndex]; //current one word
+
     if (!currentWord) return;
 
     const userAnswer = userInput.trim().toLowerCase();
@@ -91,8 +92,11 @@ export default function Game() {
       setUserInput('');
     }
   };
+
   //SPINNER
-    if (isLoading||!wordsData) return <Spinner />;
+  if (isLoading || !wordsData) return <Spinner />;
+  // console.log(wordsData&&wordsData[currentIndex][fromLang]);
+  
   return (
     <>
       {!show && (
