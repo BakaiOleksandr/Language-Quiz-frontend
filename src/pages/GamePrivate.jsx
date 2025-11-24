@@ -12,7 +12,7 @@ export default function Game() {
   //AUTHCONTEXT
   const {isLoading} = useContext(AuthContext);
   //GAME PROVIDER
-  const {setTotalGamePlays,setTotalGameMistakes} = useContext(GameContext);
+  const {setTotalGamePlays, setTotalGameMistakes} = useContext(GameContext);
 
   //useNavigate
   const navigate = useNavigate();
@@ -78,8 +78,8 @@ export default function Game() {
         //game over
         setShow(true);
         setTotalGamePlays((previos) => previos + 1);
-        setTotalGameMistakes(wordsToMemorise?.length)//TOTAL MISTAKES
-       console.log(wordsToMemorise?.length)
+        setTotalGameMistakes(wordsToMemorise?.length); //TOTAL MISTAKES
+        console.log(wordsToMemorise?.length);
         alert('Game Over!');
       }
     } else {
@@ -96,7 +96,7 @@ export default function Game() {
       setUserInput('');
     }
   };
-  
+
   //SPINNER
   if (isLoading || !wordsData) return <Spinner />;
 

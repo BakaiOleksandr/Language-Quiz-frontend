@@ -99,6 +99,8 @@ export default function GameProvider({children}) {
     };
     getMistakesData();
   }, []);
+  //
+   
 
   //RETURN............................................
   return (

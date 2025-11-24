@@ -5,6 +5,7 @@ import getData from '../functions/api.functions';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 import {LanguageContext} from '../context.languages/LanguageContext';
 import Spinner from '../components/Spinner';
+import {postData} from '../functions/api.functions';
 
 ///////////////////////////////
 export default function Level_1() {
@@ -37,6 +38,8 @@ export default function Level_1() {
       .finally(() => setTimeout(() => setLoading(false), 1000));
   }, [isLoggedIn, isLoading, user, navigate, handleUnauthorized]);
   //...................
+ 
+  //
   if (isLoading || loading) return <Spinner />;
   return (
     <>
@@ -58,7 +61,11 @@ export default function Level_1() {
         <Link to={'/game'}>
           <button>Start Level 1</button>
         </Link>
-        <button className="back-btn" style={{marginTop:"60%"}} onClick={() => navigate(-1)}>
+        <button
+          className="back-btn"
+          style={{marginTop: '60%'}}
+          onClick={() => navigate(-1)}
+        >
           {t.back}
         </button>
       </div>
