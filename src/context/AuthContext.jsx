@@ -55,7 +55,7 @@ function AuthProviderWrapper({children}) {
     setIsLoggedIn(false);
     setUser(null);
     setIsLoading(false);
-    navigate('/home', {replace: true});
+    navigate('/', {replace: true});
   };
   const handleUnauthorized = () => logOutUser();
 

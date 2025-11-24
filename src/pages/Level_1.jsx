@@ -31,7 +31,7 @@ export default function Level_1() {
       handleUnauthorized();
       return;
     }
-    getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
+    getData(`${VITE_API_URL}/game/level1/update`, token, handleUnauthorized)
       .then((data) => setLevel(data))
       .catch((err) => console.error(err))
       .finally(() => setTimeout(() => setLoading(false), 1000));

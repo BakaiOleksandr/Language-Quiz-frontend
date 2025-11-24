@@ -25,7 +25,7 @@ export default function Profile() {
 
     const token = localStorage.getItem('authToken');
 
-    getData(`${VITE_API_URL}/game/level1`, token, handleUnauthorized)
+    getData(`${VITE_API_URL}/game/level1/update`, token, handleUnauthorized)
       .then((data) => setLevel(data))
 
       .catch((err) => {

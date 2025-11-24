@@ -12,15 +12,18 @@ export default function GameProvider({children}) {
   const [totalGamePlays, setTotalGamePlays] = useState(0);
   //total_mistakes
   const [totalGameMistakes, setTotalGameMistakes] = useState(0);
-
-  //Total Game Plays
+  const [isLoaded, setIsLoaded] = useState(false);
+  //Total Game Plays GET FROM DATABASE
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) return;
 
     const loadStats = async () => {
       try {
-        const statsData = await getData(`${VITE_API_URL}/game/level1`, token);
+        const statsData = await getData(
+          `${VITE_API_URL}/game/level1/update`,
+          token
+        );
         //total_plays
         if (statsData?.total_plays != null) {
           setTotalGamePlays(statsData.total_plays); //set from database
@@ -30,13 +33,12 @@ export default function GameProvider({children}) {
         //............
       } catch (err) {
         console.log('Error loading stats:', err.message);
-        setTotalGamePlays(0);
       }
     };
 
     loadStats();
   }, []);
-  //UPDATE LEVEL 1 total plays
+  //SEND TO DATABASE total plays
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) return;
@@ -45,7 +47,7 @@ export default function GameProvider({children}) {
     const updateLevel1 = async () => {
       try {
         await postData(
-          `${VITE_API_URL}/game/level1`,
+          `${VITE_API_URL}/game/level1/totalplays`,
           {
             total_plays: totalGamePlays,
           },
@@ -57,10 +59,52 @@ export default function GameProvider({children}) {
     };
     updateLevel1();
   }, [totalGamePlays]);
+  //Total game mistakes POST
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    if (!isLoaded) return;
+    // if (totalGameMistakes == undefined) setTotalGameMistakes(0); //??????
+    const mistakesDataPost = async () => {
+      try {
+        await postData(
+          `${VITE_API_URL}/game/level1/mistakes`,
+          {total_mistakes: totalGameMistakes},
+          token
+        );
+      } catch (err) {
+        console.log('mistakes DATA ERROR');
+      }
+    };
+    mistakesDataPost();
+  }, [totalGameMistakes, isLoaded]);
+
+  //Mistakes GET FROM DATABASE ON RELOAD
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    const getMistakesData = async () => {
+      //try
+      try {
+        const getMistakesResponse = await getData(
+          `${VITE_API_URL}/game/level1/update`,
+          token
+        );
+        setTotalGameMistakes(getMistakesResponse.total_mistakes);
+        setIsLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+      //
+    };
+    getMistakesData();
+  }, []);
 
   //RETURN............................................
   return (
-    <GameContext.Provider value={{setTotalGamePlays, setTotalGameMistakes}}>
+    <GameContext.Provider
+      value={{setTotalGamePlays, setTotalGameMistakes, totalGameMistakes}}
+    >
       {children}
     </GameContext.Provider>
   );
