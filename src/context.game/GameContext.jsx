@@ -14,6 +14,8 @@ export default function GameProvider({children}) {
   const [totalGameMistakes, setTotalGameMistakes] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
+  //for average score
+  const [averageScore, setAverageScore] = useState(0);
   //Total Game Plays GET FROM DATABASE
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -128,6 +130,42 @@ export default function GameProvider({children}) {
     };
     getScoreData();
   }, []);
+  //GET AVERAGE SCORE
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+
+    const loadAverage = async () => {
+      try {
+        const getAverScoreData = await getData(
+          `${VITE_API_URL}/game/level1/update`,
+          token
+        );
+        if (getAverScoreData?.average_score != null)
+          setAverageScore(getAverScoreData.average_score);
+      } catch (err) {
+        console.log('Error loading average score:', err.message);
+      }
+    };
+    loadAverage();
+  }, []);
+  //SEND AVERAGE SCORE
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    if (averageScore === 0) return;
+
+    const postAverage = async () => {
+      await postData(
+        `${VITE_API_URL}/game/level1/averagescore`,
+        {
+          average_score: averageScore,
+        },
+        token
+      );
+    };
+    postAverage();
+  }, [averageScore]);
 
   //RETURN............................................
   return (
@@ -135,8 +173,9 @@ export default function GameProvider({children}) {
       value={{
         setTotalGamePlays,
         setTotalGameMistakes,
-        totalGameMistakes,
+        averageScore,
         setTotalScore,
+        setAverageScore,
       }}
     >
       {children}

@@ -50,8 +50,9 @@ export default function Level_1() {
         <>
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
-          <div>Previous score: {level.total_score} %</div>
-          <div>Previous Mistakes: {level.total_mistakes}</div>
+          {level.total_plays>0&&<div>Previous score: {level.total_score}%</div>}
+          <div>Previous Mistakes: { level.total_mistakes}</div>
+          <div>Average score of all games: {level.average_score}%</div>
           <div>Difficulty: {level.difficulty}</div>
         </>
       )}

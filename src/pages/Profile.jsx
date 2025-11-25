@@ -12,7 +12,7 @@ export default function Profile() {
   const {user, isLoading, isLoggedIn, handleUnauthorized} =
     useContext(AuthContext);
   const {t} = useContext(LanguageContext);
-  const [level, setLevel] = useState(null);
+  const [level1, setLevel1] = useState(null);
   //LOADING STATE
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +33,7 @@ export default function Profile() {
     let timeout;
 
     getData(`${VITE_API_URL}/game/level1/update`, token, handleUnauthorized)
-      .then((data) => setLevel(data))
+      .then((data) => setLevel1(data))
       .catch((err) => console.log(err))
       .finally(() => {
         timeout = setTimeout(() => setLoading(false), 500);
@@ -62,14 +62,14 @@ export default function Profile() {
         <button>Play</button>
       </Link>
 
-      {level && (
+      {level1 && (
         <>
-          <div>Level: {level.level}</div>
-          <div>Total plays: {level.total_plays}</div>
-          <div>Previous score: {level.total_score} %</div>
-          <div>Previous mistakes: {level.total_mistakes}</div>
-          <div>Difficulty: {level.difficulty}</div>
-          <div>Average score: {level.average_score}</div>
+          <div>Level: {level1.level}</div>
+          <div>Total plays: {level1.total_plays}</div>
+          {level1.total_plays>0&&<div>Previous score: {level1.total_score}%</div>}
+          <div>Previous Mistakes: { level1.total_mistakes}</div>
+          <div>Average score of all games: {level1.average_score}%</div>
+          <div>Difficulty: {level1.difficulty}</div>
         </>
       )}
 

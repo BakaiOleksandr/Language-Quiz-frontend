@@ -12,8 +12,12 @@ export default function Game() {
   //AUTHCONTEXT
   const {isLoading} = useContext(AuthContext);
   //GAME PROVIDER
-  const {setTotalGamePlays, setTotalGameMistakes, setTotalScore} =
-    useContext(GameContext);
+  const {
+    setTotalGamePlays,
+    setTotalGameMistakes,
+    setTotalScore,
+    setAverageScore,
+  } = useContext(GameContext);
 
   //useNavigate
   const navigate = useNavigate();
@@ -76,13 +80,29 @@ export default function Game() {
         setUserInput(''); //clear input
         setWrongWord(false); //set false for next 'wrong' word
       } else {
-        //game over
-        setShow(true);
-        setTotalGamePlays((previos) => previos + 1);
-        setTotalGameMistakes(wordsToMemorise?.length); //TOTAL MISTAKES
-        setTotalScore(() => Math.round(((wordsData.length-wordsToMemorise.length)/wordsData.length)*100));
-        console.log('totalScore',Math.round(((wordsData.length-wordsToMemorise.length)/wordsData.length)*100))
-        alert('Game Over!');
+         setShow(true);
+
+  // Сначала увеличиваем totalGamePlays и получаем новый count
+  setTotalGamePlays((prevPlays) => {
+    const newTotalPlays = prevPlays + 1;
+
+    // Вычисляем score текущего уровня
+    const levelScore = Math.round(
+      ((wordsData.length - wordsToMemorise.length) / wordsData.length) * 100
+    );
+    setTotalScore(levelScore);
+    setTotalGameMistakes(wordsToMemorise?.length);
+
+    // Обновляем средний балл безопасно (если prevAvg null)
+    setAverageScore((prevAvg) => {
+      const safePrevAvg = prevAvg || 0;
+      return Math.round((safePrevAvg * prevPlays + levelScore) / newTotalPlays);
+    });
+
+    return newTotalPlays;
+  });
+
+  alert('Game Over!');
       }
     } else {
       //wrong word
