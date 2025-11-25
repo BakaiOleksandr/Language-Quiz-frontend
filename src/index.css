@@ -162,7 +162,7 @@ button:focus-visible {
   left: -20rem;
   width: 18rem;
   height: 100%;
-  background-color: rgba(159, 157, 157, 0.87);
+  background-color: rgba(2, 5, 62, 0.7);
   transition: left 0.3s ease;
   margin-top: 3.25rem;
   z-index: 1000;
@@ -221,13 +221,13 @@ button:focus-visible {
 }
 /*NAVBAR*/
 .navbar-header {
-  background-color: #a5bffd;
+  background-color: #061e57;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .header-text {
-  color: #535bf2;
+  color: #8489fa;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: left;
@@ -251,7 +251,53 @@ button:focus-visible {
   animation: spin 0.5s linear infinite;
   margin: 100px auto;
 }
-
+/* ALERT */
+.alert {
+  width: 80%;
+  height: 30%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(231, 100, 100);
+  color: white;
+  padding: 1rem ;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ......................... */
+/* PROFILE */
+.home{
+    background-image: url('./images/ProfileImg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+.home p{
+  color: #c0c3f6;
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: left;
+}
+.home-span{
+  color: rgb(244, 148, 89);
+}
+.home-try-to-play{
+  background-color: rgb(253, 192, 131);
+  color: black;
+  font-size: larger;
+  margin-top: 2rem;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

@@ -42,29 +42,30 @@ export default function HomePage() {
   //SPINNER
   if (isLoading) return <Spinner />;
   return (
-    <>
-      <div>
+    <div className='home'>
+      <div >
         {isLoggedIn ? (
           <>
-            <h2>Welcome {user.name}!</h2>
+            <h2 style={{margin:'0',color:'white'}}>{t.profile.hello}, {user.name}!</h2>
             <p>
-              You are logged in!<br></br><Link to="/profile"><button>{t.profile.profile}</button></Link>
+              {t.to_go_to_profile}<br></br><Link to="/profile"><button>{t.profile.profile}</button></Link>
             </p>
           </>
         ) : (
           <>
-            <h2>Welcome to Language Quiz 🎉</h2>
+            <h2 style={{margin:'0',color:'white'}}>Welcome to Language Quiz</h2>
+            <p>Here you can learn the words in different languages by typing them.</p>
 
-            <p style={{padding: '1rem'}}>
+            <p>
               {t.by_default}{' '}
-              <Link to={'/settranslation'}>{t.navbar.set_translation}</Link>
+              <Link to={'/settranslation'}><span className='home-span'>{t.navbar.set_translation}</span></Link>
             </p>
             <Link to={'/trytoplay'}>
-              <button>{t.try_to_play}</button>
+              <button className='home-try-to-play'>{t.try_to_play}</button>
             </Link>
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }

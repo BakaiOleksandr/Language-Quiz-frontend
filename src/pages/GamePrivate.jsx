@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import {AuthContext} from '../context/AuthContext';
 import {GameContext} from '../context.game/GameContext';
+import Alert from '../components/Alert';
 //MAIN FUNCTION
 export default function Game() {
   //AUTHCONTEXT
@@ -35,7 +36,13 @@ export default function Game() {
   const [show, setShow] = useState(false);
   const [restart, setRestart] = useState(0);
   //...
-
+  //ALERT
+  //wrong word
+  const [alertWrong, setAlertWrong] = useState(false);
+  //game over
+  const [alertGameOver, setAlertGameOver] = useState(false);
+  //please type
+  const [alertType, setAlertType] = useState(false);
   //............................
   useEffect(() => {
     const startGame = async () => {
@@ -68,7 +75,8 @@ export default function Game() {
     const correctAnswer = currentWord[toLang].toLowerCase();
     if (userAnswer === '' || !isNaN(userAnswer)) {
       //if answer is empty string
-      alert('Please enter the word');
+      setAlertType(true);
+      setTimeout(() => setAlertType(false), 1500);
       setUserInput('');
       return;
     }
@@ -80,29 +88,33 @@ export default function Game() {
         setUserInput(''); //clear input
         setWrongWord(false); //set false for next 'wrong' word
       } else {
-         setShow(true);
+        setShow(true);
 
-  // Сначала увеличиваем totalGamePlays и получаем новый count
-  setTotalGamePlays((prevPlays) => {
-    const newTotalPlays = prevPlays + 1;
+        // Сначала увеличиваем totalGamePlays и получаем новый count
+        setTotalGamePlays((prevPlays) => {
+          const newTotalPlays = prevPlays + 1;
 
-    // Вычисляем score текущего уровня
-    const levelScore = Math.round(
-      ((wordsData.length - wordsToMemorise.length) / wordsData.length) * 100
-    );
-    setTotalScore(levelScore);
-    setTotalGameMistakes(wordsToMemorise?.length);
+          // Вычисляем score текущего уровня
+          const levelScore = Math.round(
+            ((wordsData.length - wordsToMemorise.length) / wordsData.length) *
+              100
+          );
+          setTotalScore(levelScore);
+          setTotalGameMistakes(wordsToMemorise?.length);
 
-    // Обновляем средний балл безопасно (если prevAvg null)
-    setAverageScore((prevAvg) => {
-      const safePrevAvg = prevAvg || 0;
-      return Math.round((safePrevAvg * prevPlays + levelScore) / newTotalPlays);
-    });
+          // Обновляем средний балл безопасно (если prevAvg null)
+          setAverageScore((prevAvg) => {
+            const safePrevAvg = prevAvg || 0;
+            return Math.round(
+              (safePrevAvg * prevPlays + levelScore) / newTotalPlays
+            );
+          });
 
-    return newTotalPlays;
-  });
+          return newTotalPlays;
+        });
 
-  alert('Game Over!');
+        setAlertGameOver(true);
+        setTimeout(() => setAlertGameOver(false), 1500);
       }
     } else {
       //wrong word
@@ -112,9 +124,9 @@ export default function Game() {
           ...prev,
           {from: currentWord[fromLang], to: correctAnswer},
         ]);
-        console.log(correctAnswer);
       }
-      alert('Wrong word');
+      setAlertWrong(true);
+      setTimeout(() => setAlertWrong(false), 1500);
       setUserInput('');
     }
   };
@@ -126,6 +138,11 @@ export default function Game() {
     <>
       {!show && (
         <>
+          <Alert
+            alertWrong={alertWrong}
+            alertGameOver={alertGameOver}
+            alertType={alertType}
+          />
           <h3>
             {t.type_the_translation} {fromLang.toUpperCase()}➜
             {toLang.toUpperCase()}
