@@ -12,7 +12,8 @@ export default function Game() {
   //AUTHCONTEXT
   const {isLoading} = useContext(AuthContext);
   //GAME PROVIDER
-  const {setTotalGamePlays, setTotalGameMistakes} = useContext(GameContext);
+  const {setTotalGamePlays, setTotalGameMistakes, setTotalScore} =
+    useContext(GameContext);
 
   //useNavigate
   const navigate = useNavigate();
@@ -79,7 +80,8 @@ export default function Game() {
         setShow(true);
         setTotalGamePlays((previos) => previos + 1);
         setTotalGameMistakes(wordsToMemorise?.length); //TOTAL MISTAKES
-        console.log(wordsToMemorise?.length);
+        setTotalScore(() => Math.round(((wordsData.length-wordsToMemorise.length)/wordsData.length)*100));
+        console.log('totalScore',Math.round(((wordsData.length-wordsToMemorise.length)/wordsData.length)*100))
         alert('Game Over!');
       }
     } else {

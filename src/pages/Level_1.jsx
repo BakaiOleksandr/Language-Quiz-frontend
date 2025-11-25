@@ -50,7 +50,7 @@ export default function Level_1() {
         <>
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
-          <div>Total score: {level.total_score}</div>
+          <div>Previous score: {level.total_score} %</div>
           <div>Previous Mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
         </>

@@ -13,6 +13,7 @@ export default function GameProvider({children}) {
   //total_mistakes
   const [totalGameMistakes, setTotalGameMistakes] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [totalScore, setTotalScore] = useState(0);
   //Total Game Plays GET FROM DATABASE
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -64,7 +65,6 @@ export default function GameProvider({children}) {
     const token = localStorage.getItem('authToken');
     if (!token) return;
     if (!isLoaded) return;
-    // if (totalGameMistakes == undefined) setTotalGameMistakes(0); //??????
     const mistakesDataPost = async () => {
       try {
         await postData(
@@ -99,13 +99,45 @@ export default function GameProvider({children}) {
     };
     getMistakesData();
   }, []);
-  //
-   
+  //SEND total_score
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    if (totalScore === 0) return;
+    const totalGameScoreData = async () => {
+      await postData(
+        `${VITE_API_URL}/game/level1/totalscore`,
+        {
+          total_score: totalScore,
+        },
+        token
+      );
+    };
+    totalGameScoreData();
+  }, [totalScore]);
+  //GET total_score from database
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    const getScoreData = async () => {
+      const totalScoreData = await getData(
+        `${VITE_API_URL}/game/level1/update`,
+        token
+      );
+      setTotalScore(totalScoreData.total_score);
+    };
+    getScoreData();
+  }, []);
 
   //RETURN............................................
   return (
     <GameContext.Provider
-      value={{setTotalGamePlays, setTotalGameMistakes, totalGameMistakes}}
+      value={{
+        setTotalGamePlays,
+        setTotalGameMistakes,
+        totalGameMistakes,
+        setTotalScore,
+      }}
     >
       {children}
     </GameContext.Provider>

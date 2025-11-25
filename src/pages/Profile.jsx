@@ -66,8 +66,8 @@ export default function Profile() {
         <>
           <div>Level: {level.level}</div>
           <div>Total plays: {level.total_plays}</div>
-          <div>Total score: {level.total_score}</div>
-          <div>Mistakes: {level.total_mistakes}</div>
+          <div>Previous score: {level.total_score} %</div>
+          <div>Previous mistakes: {level.total_mistakes}</div>
           <div>Difficulty: {level.difficulty}</div>
           <div>Average score: {level.average_score}</div>
         </>
