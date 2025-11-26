@@ -78,7 +78,7 @@ button {
 button.back-btn {
   background-color: var(--blue-color);
   width: fit-content;
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 .change-language-btn {
   display: inline-block;
@@ -296,7 +296,12 @@ button:focus-visible {
   background-color: rgb(253, 192, 131);
   color: black;
   font-size: larger;
-  margin-top: 2rem;
+  margin-top: 17rem;
+}
+.word-from-lang{
+  margin: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
 }
 @keyframes spin {
   0% {

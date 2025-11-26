@@ -6,6 +6,12 @@
     "set_translation": "Establecer traducción"
   },
   "type_the_translation": "Escribe la traducción",
+  "send_verif_code":"Enviar el código de verificación",
+   "confirm_email":"Confirmar correo electrónico",
+   "confirm_sign_up":"Confirmar registro",
+   "code_sent":"El código ha sido enviado a tu correo",
+   "email_confirmed":"¡Correo electrónico confirmado!",
+   "please_confirm":"¡Primero confirma tu correo electrónico!",
   "password": "Contraseña:",
   "confirm": "Confirmar",
   "sign_up": "Registrarse",

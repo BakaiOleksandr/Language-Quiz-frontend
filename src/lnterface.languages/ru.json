@@ -6,6 +6,12 @@
     "set_translation": "Установить перевод"
   },
   "type_the_translation": "Введите перевод",
+   "send_verif_code":"Отправить код подтверждения",
+    "confirm_email":"Подтвердить Email",
+     "confirm_sign_up":"Подтвердить регистрацию",
+     "code_sent":"Код отправлен на вашу почту",
+     "email_confirmed":"Email подтверждён!",
+     "please_confirm":"Сначала подтвердите email!",
   "password": "Пароль:",
   "confirm": "Подтвердить",
   "sign_up": "Регистрация",

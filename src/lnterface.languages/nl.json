@@ -6,6 +6,12 @@
     "set_translation": "Vertaling instellen"
   },
   "type_the_translation": "Typ de vertaling",
+   "send_verif_code":"Verstuur de verificatiecode",
+   "confirm_email":"Bevestig e-mail",
+    "confirm_sign_up":"Aanmelden bevestigen",
+     "email_confirmed":"E-mail bevestigd!",
+    "code_sent":"De code is naar je e-mail gestuurd",
+    "please_confirm":"Bevestig eerst je e-mail!",
   "password": "Wachtwoord:",
   "confirm": "Bevestigen",
   "sign_up": "Aanmelden",

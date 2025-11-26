@@ -98,11 +98,11 @@ export default function Game() {
       {!show && (
         <>
           <h3>
-            {t.type_the_translation} {fromLang.toUpperCase()}➜
-            {toLang.toUpperCase()}
+            {t.type_the_translation}<br></br> <span style={{fontSize:"1.5rem"}}>{fromLang.toUpperCase()}➜
+            {toLang.toUpperCase()}</span>
           </h3>
           <div
-            style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem'}}
+            className='word-from-lang'
           >
             {wordsData && wordsData[currentIndex][fromLang]}
           </div>
@@ -145,7 +145,7 @@ export default function Game() {
             }}
           >
             <button
-              style={{width: 'fit-content'}}
+              style={{width: 'fit-content',marginTop:'3rem'}}
               onClick={() => setRestart((prev) => prev + 1)}
             >
               {t.restart_round}

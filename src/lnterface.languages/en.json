@@ -5,6 +5,12 @@
     "contact": "Contact",
     "set_translation": "Set Translation"
   },
+  "send_verif_code":"Send the verification code",
+  "confirm_email":"Confirm email",
+  "confirm_sign_up":"Confirm Sign Up",
+  "code_sent":"The code has been sent to your email",
+  "email_confirmed":"Email confirmed!",
+  "please_confirm":"Please confirm your email first!",
   "type_the_translation": "Type the translation",
   "password": "Password:",
   "confirm": "Confirm",

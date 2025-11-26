@@ -23,7 +23,7 @@ export default function TryToPlay() {
           >
             {t.full_version_info} <Link to="/signup">{t.sign_up}.</Link>
           </p>
-          <button onClick={() => setGameStarted(true)}>
+          <button style={{marginTop:'17rem'}} onClick={() => setGameStarted(true)}>
             {t.play_demo_version}
           </button>
         </>
