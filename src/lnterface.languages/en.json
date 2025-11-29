@@ -37,6 +37,12 @@
     "profile": "Profile",
     "hello": "Hello",
     "back_page": "back",
-    "level_1":"Level 1"
-  }
+    "level_1":"Level",
+    "lets_play":"Let's Play! Choose the level."
+  },
+  "total_plays":"Total plays:",
+  "previousMistakes": "Previous Mistakes:",
+    "averageScore": "Average score of all games:",
+    "difficulty": "Difficulty:",
+    "start": "Start"
 }

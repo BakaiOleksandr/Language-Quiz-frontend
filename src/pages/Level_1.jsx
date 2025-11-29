@@ -43,25 +43,27 @@ export default function Level_1() {
   if (isLoading || loading) return <Spinner />;
   return (
     <>
-      <h2>{t.profile.level_1}</h2>
-      <div>Your statistic</div>
+      
+      
 
-      {level && (
-        <>
-          <div>Level: {level.level}</div>
-          <div>Total plays: {level.total_plays}</div>
+      {level  && (
+        <div className='level'>
+          <div className='level-header'>{t.profile.level_1} {level.level}</div>
+          <div>{t.total_plays}{level.total_plays}</div>
           {level.total_plays>0&&<div>Previous score: {level.total_score}%</div>}
-          <div>Previous Mistakes: { level.total_mistakes}</div>
-          <div>Average score of all games: {level.average_score}%</div>
-          <div>Difficulty: {level.difficulty}</div>
-        </>
+          <div>{t.previousMistakes}{ level.total_mistakes}</div>
+          <div>{t.averageScore}{level.average_score}%</div>
+          <div>{t.difficulty} {level.difficulty}</div>
+           <Link className='start-level-btn' to={'/game'}>
+          <button>{t.start}</button>
+        </Link>
+        </div>
+        
       )}
       <div
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
       >
-        <Link to={'/game'}>
-          <button>Start Level 1</button>
-        </Link>
+       
         <button
           className="back-btn"
           style={{marginTop: '60%'}}

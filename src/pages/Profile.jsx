@@ -57,23 +57,27 @@ export default function Profile() {
         <h2>
           {t.profile.hello}, {user.name}!
         </h2>
+        <div style={{fontWeight:"bolder",marginTop:"0.5rem"}}>{t.profile.lets_play}</div>
       </div>
-      <Link to="/level1">
-        <button>Play</button>
-      </Link>
+      
 
-      {level1 && (
-        <>
-          <div>Level: {level1.level}</div>
-          <div>Total plays: {level1.total_plays}</div>
+      {level1  && (
+        <div className='level'>
+          <div className='level-header'>{t.profile.level_1} {level1.level}</div>
+          <div>{t.total_plays}{level1.total_plays}</div>
           {level1.total_plays>0&&<div>Previous score: {level1.total_score}%</div>}
-          <div>Previous Mistakes: { level1.total_mistakes}</div>
-          <div>Average score of all games: {level1.average_score}%</div>
-          <div>Difficulty: {level1.difficulty}</div>
-        </>
+          <div>{t.previousMistakes}{ level1.total_mistakes}</div>
+          <div>{t.averageScore}{level1.average_score}%</div>
+          <div>{t.difficulty} {level1.difficulty}</div>
+           <Link className='start-level-btn' to={'/level1'}>
+          <button>{t.start}</button>
+        </Link>
+        </div>
+        
       )}
 
-      <div>Let's Play! Choose the level.</div>
+      
+     
     </>
   );
 }

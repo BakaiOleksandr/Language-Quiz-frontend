@@ -37,6 +37,12 @@
     "profile": "Perfil",
     "hello": "Hola",
     "back_page": "Atrás",
-    "level_1": "Nivel 1"
-  }
+    "level_1": "Nivel",
+     "lets_play":"¡Vamos a jugar! Elige el nivel."
+  },
+  "total_plays":"Total de partidas:",
+  "previousMistakes": "Errores anteriores:",
+    "averageScore": "Puntuación media de todas las partidas:",
+    "difficulty": "Dificultad:",
+    "start": "Comenzar"
 }

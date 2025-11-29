@@ -37,6 +37,12 @@
     "profile": "Profiel",
     "hello": "Hallo",
     "back_page": "Terug",
-    "level_1": "Niveau 1"
-  }
+    "level_1": "Niveau",
+    "lets_play":"Laten we spelen! Kies het niveau."
+  },
+  "total_plays":"Totaal gespeeld:",
+   "previousMistakes": "Eerdere fouten:",
+    "averageScore": "Gemiddelde score van alle spellen:",
+    "difficulty": "Moeilijkheidsgraad:",
+    "start": "Start"
 }

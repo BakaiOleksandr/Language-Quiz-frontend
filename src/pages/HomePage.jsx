@@ -45,12 +45,13 @@ export default function HomePage() {
     <div className='home'>
       <div >
         {isLoggedIn ? (
-          <>
+          <div className='home-container'>
             <h2 style={{margin:'0',color:'white'}}>{t.profile.hello}, {user.name}!</h2>
             <p>
-              {t.to_go_to_profile}<br></br><Link to="/profile"><button>{t.profile.profile}</button></Link>
+              {t.to_go_to_profile}
             </p>
-          </>
+              <Link  to="/profile"><button className='button-yellow'>{t.profile.profile}</button></Link>
+          </div>
         ) : (
           <>
             <h2 style={{margin:'0',color:'white'}}>Welcome to Language Quiz</h2>

@@ -37,6 +37,12 @@
     "profile": "Profil",
     "hello": "Bonjour",
     "back_page": "Retour",
-    "level_1": "Niveau 1"
-  }
+    "level_1": "Niveau",
+    "lets_play":"Jouons ! Choisis le niveau."
+  },
+  "total_plays":"Nombre total de parties:",
+   "previousMistakes": "Erreurs précédentes:",
+    "averageScore": "Score moyen de toutes les parties:",
+    "difficulty": "Difficulté:",
+    "start": "Commencer"
 }

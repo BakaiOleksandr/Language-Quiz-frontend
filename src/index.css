@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --blue-color: #cedcfc;
+  --yellow-color:rgb(253, 192, 131);
 }
 
 a {
@@ -155,6 +156,15 @@ button:focus-visible {
 .close-sidebar-button {
   margin-top: 3rem;
   font-size: 1.5rem;
+  color: var(--yellow-color);
+}
+.button-yellow{
+  background-color: var(--yellow-color);
+}
+.home-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .menu-sidebar {
   position: fixed;
@@ -302,6 +312,32 @@ button:focus-visible {
   margin: 1rem;
   font-size: 3rem;
   font-weight: bold;
+}
+.level{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2rem;
+  padding: 1rem;
+  border: 0.5rem solid var(--blue-color);
+  border-radius: 1rem;
+}
+.level div{
+  margin-top: 1rem;
+}
+.start-level-btn{
+  margin-top: 1rem;
+  align-self: center;
+}
+.start-level-btn button{
+  background-color: var(--yellow-color);
+  padding: 0.5rem 2rem 0.5rem 2rem;
+}
+.level-header{
+  font-size: larger;
+  font-style: oblique;
+  font-weight: bolder;
+  align-self: center;
 }
 @keyframes spin {
   0% {
